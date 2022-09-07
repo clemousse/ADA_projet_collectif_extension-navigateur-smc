@@ -1,0 +1,19 @@
+{
+    "name": "Paris événements et activités",
+    "description": "Donne les événements et activités répertoriés via l'API 'Que Faire à Paris' pour le mois en cours",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html",  
+        "default_title" :"GO !",
+        "default_icon":"/images/paris.png"
+        },
+    "icons":{
+        "16":"/images/paris.png",
+        "32":"/images/paris.png",
+        "48": "/images/paris.png",
+        "128":"/images/paris.png"},
+    "permissions": [
+        "tabs"
+      ]
+}
