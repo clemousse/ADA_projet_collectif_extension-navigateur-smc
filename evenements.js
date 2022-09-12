@@ -105,6 +105,7 @@ function deleteTextInString(text) {
   return newStr;
 }
 
+//code clem début
 function displayData(data) {
   //crée la balise article pour chaque data
   let newArt = document.createElement("article");
@@ -218,6 +219,7 @@ function displayData(data) {
   let contenu = document.getElementById("contenu");
   contenu.appendChild(newArt);
 }
+//code clem fin
 
 fetch(url)
   .then((response) => response.json())
@@ -253,6 +255,7 @@ fetch(url)
     for (let i = 0; i < data.facet_groups.length; i++) {
       if (data.facet_groups[i].name === "tags") {
         for (let j = 0; j < data.facet_groups[i].facets.length; j++) {
+          //code clem debut
           let tag = data.facet_groups[i].facets[j].name.trim();
           tags.push(tag);
           let newOption = document.createElement("option");
@@ -260,6 +263,7 @@ fetch(url)
           classOption.value = tag;
           newOption.setAttributeNode(classOption);
           let newOptionContent = document.createTextNode(tag);
+          //code clem fin
           newOption.appendChild(newOptionContent);
           newSelect.appendChild(newOption);
         }
@@ -285,6 +289,7 @@ fetch(url)
       //efface le contenu précédent
       document.getElementById("contenu").innerHTML = "";
       // toutes les catégories
+      //code clem debut
       if (
         tag == "--toutes les catégories--" ||
         tag == undefined ||
@@ -301,6 +306,7 @@ fetch(url)
           displayData(data.records[i].fields);
         }
       }
+      //code clem fin
     });
   })
   .catch((error) => {
