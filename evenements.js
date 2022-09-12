@@ -46,7 +46,7 @@ let dateEnd2 = `${year.toString()}-${
 }-${days[month].toString()}`;
 
 //fetch l'API Que Faire à Paris
-let url = `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=date_start%3A%5B${dateStart1}T22%3A00%3A00Z+TO+${dateStart2}T21%3A59%3A59Z%5D&q=date_end%3A%5B${dateEnd1}T22%3A00%3A00Z+TO+${dateEnd2}T21%3A59%3A59Z%5D&facet=date_start&facet=date_end&facet=tags&rows=1000&facet=address_name&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=transport&facet=price_type&facet=access_type&facet=updated_at&facet=programs`;
+let url = `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=date_start%3A%5B${dateStart1}T22%3A00%3A00Z+TO+${dateStart2}T21%3A59%3A59Z%5D&q=date_end%3A%5B${dateEnd1}T22%3A00%3A00Z+TO+${dateEnd2}T21%3A59%3A59Z%5D&sort=date_start&facet=date_start&facet=date_end&facet=tags&rows=1000&facet=address_name&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=transport&facet=price_type&facet=access_type&facet=updated_at&facet=programs`;
 
 fetch(url)
   .then((response) => response.json())
