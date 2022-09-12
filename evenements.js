@@ -105,10 +105,126 @@ function deleteTextInString(text) {
   return newStr;
 }
 
+function displayData(data) {
+  //crée la balise article pour chaque data
+  let newArt = document.createElement("article");
+  //crée les tags
+  let tags = data.tags.split(";");
+  let newDivTag = document.createElement("div");
+  for (const el of tags) {
+    let newSpanTag = document.createElement("span");
+    let newTagContent = document.createTextNode(el);
+    newDivTag.appendChild(newSpanTag);
+    newSpanTag.appendChild(newTagContent);
+  }
+  //crée le titre
+  let newH2 = document.createElement("h2");
+  let newContent = document.createTextNode(data.title);
+  //crée l'image
+  let newPImg = document.createElement("div");
+  let newImg = document.createElement("img");
+  let src = document.createAttribute("src");
+  let alt = document.createAttribute("alt");
+  src.value = data.cover_url;
+  alt.value = `image de : ${data.cover_alt}`;
+  newImg.setAttributeNode(src);
+  newImg.setAttributeNode(alt);
+  newPImg.appendChild(newImg);
+  //crée la date
+  let newDate = document.createElement("h3");
+  let classDate = document.createAttribute("class");
+  classDate.value = "date";
+  newDate.setAttributeNode(classDate);
+  let result = deleteTextInString(data.date_description);
+  let newDateContent = document.createTextNode(result);
+  //crée le prix et le lien d'accès
+  let newDivPriceAccessLink = document.createElement("div");
+  let newPrice = document.createElement("span");
+  let newAccessLink = document.createElement("a");
+  let classAccessLinkHref = document.createAttribute("href");
+  let classAccessLinkTarget = document.createAttribute("target");
+  classAccessLinkHref.value = data.access_link;
+  classAccessLinkTarget.value = "_blank";
+  newAccessLink.setAttributeNode(classAccessLinkHref);
+  newAccessLink.setAttributeNode(classAccessLinkTarget);
+
+  let classPrice = document.createAttribute("class");
+  classPrice.value = "price";
+  newPrice.setAttributeNode(classPrice);
+  let classAccessLink = document.createAttribute("class");
+  classAccessLink.value = "accessLink";
+  newAccessLink.setAttributeNode(classAccessLink);
+  let newPriceContent = document.createTextNode(
+    `${data.price_type} ${data.price_detail} `
+  );
+  let newAccessLinkContent = document.createTextNode(data.access_link);
+  //crée le lieu et l'adresse
+  let newDivPlace = document.createElement("div");
+  let newAddress = document.createElement("span");
+  let newPlace = document.createElement("span");
+  let classPlace = document.createAttribute("class");
+  classPlace.value = "place";
+  newPlace.setAttributeNode(classPlace);
+  let classAddress = document.createAttribute("class");
+  classAddress.value = "address";
+  newAddress.setAttributeNode(classAddress);
+  let newPlaceContent = document.createTextNode(data.address_name);
+  let newAddressContent = document.createTextNode(
+    ` ${data.address_street} ${data.address_zipcode} ${data.address_city}`
+  );
+  //crée la description
+  let newDescription = document.createElement("p");
+  result = deleteTextInString(data.description);
+  let newDescriptionContent = document.createTextNode(result);
+  //crée le lien
+  let newUrl = document.createElement("a");
+  let classUrl = document.createAttribute("href");
+  let classTarget = document.createAttribute("target");
+  classUrl.value = data.url;
+  classTarget.value = "_blank";
+  newUrl.setAttributeNode(classUrl);
+  newUrl.setAttributeNode(classTarget);
+  let newUrlContent = document.createTextNode(data.url);
+  //////
+  //ajoute les tags
+  newArt.appendChild(newDivTag);
+  //ajoute et remplit le titre
+  newArt.appendChild(newH2);
+  newH2.appendChild(newContent);
+  //ajoute l'image
+  newArt.appendChild(newPImg);
+  //ajoute la date
+  newArt.appendChild(newDate);
+  newDate.appendChild(newDateContent);
+  //ajoute le prix et le lien d'accès
+  newArt.appendChild(newDivPriceAccessLink);
+  newDivPriceAccessLink.appendChild(newPrice);
+  newPrice.appendChild(newPriceContent);
+  newDivPriceAccessLink.appendChild(newAccessLink);
+  newAccessLink.appendChild(newAccessLinkContent);
+  //ajoute le lieu et l'adresse
+  newArt.appendChild(newDivPlace);
+  newDivPlace.appendChild(newPlace);
+  newDivPlace.appendChild(newAddress);
+  newPlace.appendChild(newPlaceContent);
+  newAddress.appendChild(newAddressContent);
+  //ajoute la description
+  newArt.appendChild(newDescription);
+  newDescription.appendChild(newDescriptionContent);
+  //ajoute le lien
+  newArt.appendChild(newUrl);
+  newUrl.appendChild(newUrlContent);
+  //ajoute à l'élément section du body dans le main
+  let contenu = document.getElementById("contenu");
+  contenu.appendChild(newArt);
+}
+
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
     let nhits = data.nhits; // pour avoir le nombre d'événements/activités du mois
+    let tags = []; //pour avoir l'ensemble des tags existants sur les événements/activités
+
     //////CREATION DU FORMULAIRE
     //label
     let newLabel = document.createElement("label");
@@ -137,13 +253,13 @@ fetch(url)
     for (let i = 0; i < data.facet_groups.length; i++) {
       if (data.facet_groups[i].name === "tags") {
         for (let j = 0; j < data.facet_groups[i].facets.length; j++) {
+          let tag = data.facet_groups[i].facets[j].name.trim();
+          tags.push(tag);
           let newOption = document.createElement("option");
           let classOption = document.createAttribute("value");
-          classOption.value = data.facet_groups[i].facets[j].name.trim();
+          classOption.value = tag;
           newOption.setAttributeNode(classOption);
-          let newOptionContent = document.createTextNode(
-            data.facet_groups[i].facets[j].name.trim()
-          );
+          let newOptionContent = document.createTextNode(tag);
           newOption.appendChild(newOptionContent);
           newSelect.appendChild(newOption);
         }
@@ -162,140 +278,27 @@ fetch(url)
     navigation.appendChild(newSelect);
     navigation.appendChild(newButton);
 
+    ////// AFFICHAGE DE LA DATA AU CLIC BOUTON
     newButton.addEventListener("click", () => {
       let getSelect = document.getElementById("tags-select");
       let tag = getSelect.options[getSelect.selectedIndex].text;
       //efface le contenu précédent
       document.getElementById("contenu").innerHTML = "";
-      ////// AFFICHAGE DE LA DATA
-      for (let i = 0; i < nhits; i++) {
-        if (data.records[i].fields.tags.includes(tag)) {
-          //crée la balise article pour chaque data
-          let newArt = document.createElement("article");
-          //crée les tags
-          let tags = data.records[i].fields.tags.split(";");
-          let newDivTag = document.createElement("div");
-          for (const el of tags) {
-            let newSpanTag = document.createElement("span");
-            let newTagContent = document.createTextNode(el);
-            newDivTag.appendChild(newSpanTag);
-            newSpanTag.appendChild(newTagContent);
-          }
-          //crée le titre
-          let newH2 = document.createElement("h2");
-          let newContent = document.createTextNode(
-            data.records[i].fields.title
-          );
-          //crée l'image
-          let newPImg = document.createElement("div");
-          let newImg = document.createElement("img");
-          let src = document.createAttribute("src");
-          let alt = document.createAttribute("alt");
-          src.value = data.records[i].fields.cover_url;
-          alt.value = `image de :${data.records[i].fields.cover_alt}`;
-          newImg.setAttributeNode(src);
-          newImg.setAttributeNode(alt);
-          newPImg.appendChild(newImg);
-          //crée la date
-          let newDate = document.createElement("h3");
-          let classDate = document.createAttribute("class");
-          classDate.value = "date";
-          newDate.setAttributeNode(classDate);
-          let result = deleteTextInString(
-            data.records[i].fields.date_description
-          );
-          let newDateContent = document.createTextNode(result);
-          //crée le prix et le lien d'accès
-          let newDivPriceAccessLink = document.createElement("div");
-          let newPrice = document.createElement("span");
-          let newAccessLink = document.createElement("a");
-          let classAccessLinkHref = document.createAttribute("href");
-          let classAccessLinkTarget = document.createAttribute("target");
-          classAccessLinkHref.value = data.records[i].fields.access_link;
-          classAccessLinkTarget.value = "_blank";
-          newAccessLink.setAttributeNode(classAccessLinkHref);
-          newAccessLink.setAttributeNode(classAccessLinkTarget);
+      // toutes les catégories
+      if (
+        tag == "--toutes les catégories--" ||
+        tag == undefined ||
+        tag == null
+      ) {
+        for (let i = 0; i < nhits; i++) {
+          displayData(data.records[i].fields);
+        }
+      }
 
-          let classPrice = document.createAttribute("class");
-          classPrice.value = "price";
-          newPrice.setAttributeNode(classPrice);
-          let classAccessLink = document.createAttribute("class");
-          classAccessLink.value = "accessLink";
-          newAccessLink.setAttributeNode(classAccessLink);
-          let newPriceContent = document.createTextNode(
-            `${data.records[i].fields.price_type} ${data.records[i].fields.price_detail} `
-          );
-          let newAccessLinkContent = document.createTextNode(
-            data.records[i].fields.access_link
-          );
-          //crée le lieu et l'adresse
-          let newDivPlace = document.createElement("div");
-          let newAddress = document.createElement("span");
-          let newPlace = document.createElement("span");
-          let classPlace = document.createAttribute("class");
-          classPlace.value = "place";
-          newPlace.setAttributeNode(classPlace);
-          let classAddress = document.createAttribute("class");
-          classAddress.value = "address";
-          newAddress.setAttributeNode(classAddress);
-          let newPlaceContent = document.createTextNode(
-            data.records[i].fields.address_name
-          );
-          let newAddressContent = document.createTextNode(
-            ` ${data.records[i].fields.address_street} ${data.records[i].fields.address_zipcode} ${data.records[i].fields.address_city}`
-          );
-          //crée la description
-          let newDescription = document.createElement("p");
-          result = deleteTextInString(data.records[i].fields.description);
-          let newDescriptionContent = document.createTextNode(result);
-          //crée le lien
-          let newUrl = document.createElement("a");
-          let classUrl = document.createAttribute("href");
-          let classTarget = document.createAttribute("target");
-          classUrl.value = data.records[i].fields.url;
-          classTarget.value = "_blank";
-          newUrl.setAttributeNode(classUrl);
-          newUrl.setAttributeNode(classTarget);
-          let newUrlContent = document.createTextNode(
-            data.records[i].fields.url
-          );
-          //////
-          //ajoute les tags
-          newArt.appendChild(newDivTag);
-          //ajoute et remplit le titre
-          newArt.appendChild(newH2);
-          newH2.appendChild(newContent);
-          //ajoute l'image
-          newArt.appendChild(newPImg);
-          //ajoute la date
-          newArt.appendChild(newDate);
-          newDate.appendChild(newDateContent);
-          //ajoute le prix et le lien d'accès
-          newArt.appendChild(newDivPriceAccessLink);
-          newDivPriceAccessLink.appendChild(newPrice);
-          newPrice.appendChild(newPriceContent);
-          newDivPriceAccessLink.appendChild(newAccessLink);
-          newAccessLink.appendChild(newAccessLinkContent);
-          //ajoute le lieu et l'adresse
-          newArt.appendChild(newDivPlace);
-          newDivPlace.appendChild(newPlace);
-          newDivPlace.appendChild(newAddress);
-          newPlace.appendChild(newPlaceContent);
-          newAddress.appendChild(newAddressContent);
-          //ajoute la description
-          newArt.appendChild(newDescription);
-          newDescription.appendChild(newDescriptionContent);
-          //ajoute le lien
-          newArt.appendChild(newUrl);
-          newUrl.appendChild(newUrlContent);
-          //ajoute à l'élément section du body dans le main
-          let contenu = document.getElementById("contenu");
-          contenu.appendChild(newArt);
-        } else if (
-          tag == "--toutes les catégories--" ||
-          tag == undefined ||
-          tag == null
-        ) {
+      for (let i = 0; i < nhits; i++) {
+        //affiche les data en fonction de la catégorie
+        if (data.records[i].fields.tags.includes(tag)) {
+          displayData(data.records[i].fields);
         }
       }
     });
