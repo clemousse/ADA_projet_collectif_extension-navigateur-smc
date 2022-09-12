@@ -104,8 +104,20 @@ function deleteTextInString(text) {
   newStr = newStr.replace(/<\/img/g, " ");
   return newStr;
 }
-
 //code clem début
+function setDisplayUndefined(data) {
+  //console.log("array : ", data);
+  let result = "";
+  for (const el of data) {
+    if (el || el != undefined || el != null) {
+      //console.log("el : ", el);
+      result += `${el} `;
+    }
+  }
+  //console.log("result :", result.trim());
+  return result.trim();
+}
+
 function displayData(data) {
   //crée la balise article pour chaque data
   let newArt = document.createElement("article");
@@ -114,13 +126,13 @@ function displayData(data) {
   let newDivTag = document.createElement("div");
   for (const el of tags) {
     let newSpanTag = document.createElement("span");
-    let newTagContent = document.createTextNode(el);
+    let newTagContent = document.createTextNode(setDisplayUndefined([el]));
     newDivTag.appendChild(newSpanTag);
     newSpanTag.appendChild(newTagContent);
   }
   //crée le titre
   let newH2 = document.createElement("h2");
-  let newContent = document.createTextNode(data.title);
+  let newContent = document.createTextNode(setDisplayUndefined([data.title]));
   //crée l'image
   let newPImg = document.createElement("div");
   let newImg = document.createElement("img");
@@ -137,7 +149,7 @@ function displayData(data) {
   classDate.value = "date";
   newDate.setAttributeNode(classDate);
   let result = deleteTextInString(data.date_description);
-  let newDateContent = document.createTextNode(result);
+  let newDateContent = document.createTextNode(setDisplayUndefined([result]));
   //crée le prix et le lien d'accès
   let newDivPriceAccessLink = document.createElement("div");
   let newPrice = document.createElement("span");
@@ -156,9 +168,11 @@ function displayData(data) {
   classAccessLink.value = "accessLink";
   newAccessLink.setAttributeNode(classAccessLink);
   let newPriceContent = document.createTextNode(
-    `${data.price_type} ${data.price_detail} `
+    " " + setDisplayUndefined([data.price_type, data.price_detail])
   );
-  let newAccessLinkContent = document.createTextNode(data.access_link);
+  let newAccessLinkContent = document.createTextNode(
+    " " + setDisplayUndefined([data.access_link])
+  );
   //crée le lieu et l'adresse
   let newDivPlace = document.createElement("div");
   let newAddress = document.createElement("span");
@@ -169,14 +183,24 @@ function displayData(data) {
   let classAddress = document.createAttribute("class");
   classAddress.value = "address";
   newAddress.setAttributeNode(classAddress);
-  let newPlaceContent = document.createTextNode(data.address_name);
-  let newAddressContent = document.createTextNode(
-    ` ${data.address_street} ${data.address_zipcode} ${data.address_city}`
+  let newPlaceContent = document.createTextNode(
+    setDisplayUndefined([data.address_name])
   );
+  let newAddressContent = document.createTextNode(
+    " " +
+      setDisplayUndefined([
+        data.address_street,
+        data.address_zipcode,
+        data.address_city,
+      ])
+  );
+
   //crée la description
   let newDescription = document.createElement("p");
   result = deleteTextInString(data.description);
-  let newDescriptionContent = document.createTextNode(result);
+  let newDescriptionContent = document.createTextNode(
+    setDisplayUndefined([result])
+  );
   //crée le lien
   let newUrl = document.createElement("a");
   let classUrl = document.createAttribute("href");
@@ -185,7 +209,8 @@ function displayData(data) {
   classTarget.value = "_blank";
   newUrl.setAttributeNode(classUrl);
   newUrl.setAttributeNode(classTarget);
-  let newUrlContent = document.createTextNode(data.url);
+  let newUrlContent = document.createTextNode(setDisplayUndefined([data.url]));
+
   //////
   //ajoute les tags
   newArt.appendChild(newDivTag);
