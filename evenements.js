@@ -173,6 +173,7 @@ fetch(url)
           //crée la balise article pour chaque data
           let newArt = document.createElement("article");
           //crée les tags
+
           let tags = data.records[i].fields.tags.split(";");
           let newDivTag = document.createElement("div");
           for (const el of tags) {
