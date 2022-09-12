@@ -210,8 +210,12 @@ fetch(url)
           let newPrice = document.createElement("span");
           let newAccessLink = document.createElement("a");
           let classAccessLinkHref = document.createAttribute("href");
+          let classAccessLinkTarget = document.createAttribute("target");
           classAccessLinkHref.value = data.records[i].fields.access_link;
+          classAccessLinkTarget.value = "_blank";
           newAccessLink.setAttributeNode(classAccessLinkHref);
+          newAccessLink.setAttributeNode(classAccessLinkTarget);
+
           let classPrice = document.createAttribute("class");
           classPrice.value = "price";
           newPrice.setAttributeNode(classPrice);
@@ -247,8 +251,11 @@ fetch(url)
           //crée le lien
           let newUrl = document.createElement("a");
           let classUrl = document.createAttribute("href");
+          let classTarget = document.createAttribute("target");
           classUrl.value = data.records[i].fields.url;
+          classTarget.value = "_blank";
           newUrl.setAttributeNode(classUrl);
+          newUrl.setAttributeNode(classTarget);
           let newUrlContent = document.createTextNode(
             data.records[i].fields.url
           );
