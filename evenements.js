@@ -46,7 +46,7 @@ let dateEnd2 = `${year.toString()}-${
 }-${days[month].toString()}`;
 
 //fetch l'API Que Faire à Paris
-let url = `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=date_start%3A%5B${dateStart1}T22%3A00%3A00Z+TO+${dateStart2}T21%3A59%3A59Z%5D&q=date_end%3A%5B${dateEnd1}T22%3A00%3A00Z+TO+${dateEnd2}T21%3A59%3A59Z%5D&sort=date_start&facet=date_start&facet=date_end&facet=tags&rows=1000&facet=address_name&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=transport&facet=price_type&facet=access_type&facet=updated_at&facet=programs`;
+let url = `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=date_start%3A%5B${dateStart1}T22%3A00%3A00Z+TO+${dateStart2}T21%3A59%3A59Z%5D&q=date_end%3A%5B${dateEnd1}T22%3A00%3A00Z+TO+${dateEnd2}T21%3A59%3A59Z%5D&sort=-date_start&facet=date_start&facet=date_end&facet=tags&rows=1000&facet=address_name&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=transport&facet=price_type&facet=access_type&facet=updated_at&facet=programs`;
 
 function deleteTextInString(text) {
   let str = text;
@@ -104,7 +104,7 @@ function deleteTextInString(text) {
   newStr = newStr.replace(/<\/img/g, " ");
   return newStr;
 }
-//code clem début
+
 function setDisplayUndefined(data) {
   //console.log("array : ", data);
   let result = "";
@@ -125,10 +125,13 @@ function displayData(data) {
   let tags = data.tags.split(";");
   let newDivTag = document.createElement("div");
   for (const el of tags) {
-    let newSpanTag = document.createElement("span");
+    let newTag = document.createElement("span");
+    let classTag = document.createAttribute("class");
+    classTag.value = setDisplayUndefined([el]).toLowerCase();
+    newTag.setAttributeNode(classTag);
     let newTagContent = document.createTextNode(setDisplayUndefined([el]));
-    newDivTag.appendChild(newSpanTag);
-    newSpanTag.appendChild(newTagContent);
+    newDivTag.appendChild(newTag);
+    newTag.appendChild(newTagContent);
   }
   //crée le titre
   let newH2 = document.createElement("h2");
@@ -212,8 +215,11 @@ function displayData(data) {
   let newDescriptionSubtitle = document.createElement("h4");
   let newDescription = document.createElement("span");
   let classDescriptionSubtitle = document.createAttribute("class");
+  let classDescriptionDescription = document.createAttribute("class");
   classDescriptionSubtitle.value = "subtitle";
+  classDescriptionDescription.value = "description";
   newDescriptionSubtitle.setAttributeNode(classDescriptionSubtitle);
+  newDescription.setAttributeNode(classDescriptionDescription);
   result = deleteTextInString(data.description);
   let newDescriptionContent = document.createTextNode(
     setDisplayUndefined([result])
@@ -280,7 +286,6 @@ function displayData(data) {
   let contenu = document.getElementById("contenu");
   contenu.appendChild(newArt);
 }
-//code clem fin
 
 fetch(url)
   .then((response) => response.json())
@@ -309,27 +314,31 @@ fetch(url)
     let classOption = document.createAttribute("value");
     classOption.value = "tous";
     newOption.setAttributeNode(classOption);
-    let newOptionContent = document.createTextNode("--toutes les catégories--");
+    let newOptionContent = document.createTextNode(
+      "-- toutes les catégories --"
+    );
     newOption.appendChild(newOptionContent);
     newSelect.appendChild(newOption);
 
     for (let i = 0; i < data.facet_groups.length; i++) {
       if (data.facet_groups[i].name === "tags") {
         for (let j = 0; j < data.facet_groups[i].facets.length; j++) {
-          //code clem debut
           let tag = data.facet_groups[i].facets[j].name.trim();
           tags.push(tag);
+        }
+        tags.sort();
+        for (let i = 0; i < tags.length; i++) {
           let newOption = document.createElement("option");
           let classOption = document.createAttribute("value");
-          classOption.value = tag;
+          classOption.value = tags[i];
           newOption.setAttributeNode(classOption);
-          let newOptionContent = document.createTextNode(tag);
-          //code clem fin
+          let newOptionContent = document.createTextNode(tags[i]);
           newOption.appendChild(newOptionContent);
           newSelect.appendChild(newOption);
         }
       }
     }
+
     //button
     let newButton = document.createElement("button");
     let classButton = document.createAttribute("id");
@@ -351,7 +360,7 @@ fetch(url)
       document.getElementById("contenu").innerHTML = "";
       //code clem debut
       if (
-        tag == "--toutes les catégories--" ||
+        tag == "-- toutes les catégories --" ||
         tag == undefined ||
         tag == null
       ) {
