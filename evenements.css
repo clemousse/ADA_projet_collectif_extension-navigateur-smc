@@ -120,6 +120,7 @@ section {
 .balade {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: brown;
     border-radius: 10px;
     padding: 5px;
@@ -129,6 +130,7 @@ section {
 .brocante {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: blueviolet;
     border-radius: 10px;
     padding: 5px;
@@ -175,6 +177,7 @@ section {
 .conference {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: firebrick;
     border-radius: 10px;
     padding: 5px;
@@ -238,6 +241,7 @@ section {
 .innovation {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: chocolate;
     border-radius: 10px;
     padding: 5px;
@@ -302,6 +306,7 @@ section {
 .peinture {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: crimson;
     border-radius: 10px;
     padding: 5px;
@@ -321,6 +326,7 @@ section {
 .salon {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: forestgreen;
     border-radius: 10px;
     padding: 5px;
@@ -339,6 +345,7 @@ section {
 .solidarite {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: rosybrown;
     border-radius: 10px;
     padding: 5px;
@@ -376,6 +383,7 @@ section {
 .theatre {
     width: auto;
     height: 20px;
+    color: #FFFFFF;
     background-color: indianred;
     border-radius: 10px;
     padding: 5px;
