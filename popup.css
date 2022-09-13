@@ -1,0 +1,38 @@
+.popup {
+    text-align: center;
+    margin: auto;
+}
+
+#logo {
+    text-align: center;
+    margin-left: 10px;
+}
+
+p {
+    width: 200px;
+    border-radius: 6px;
+    font-size: 15px;
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
+#evenements {
+    width: 60%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 1em;
+    color: #FFFFFF;
+    background-color: rgb(199, 62, 74);
+    border: 1px solid rgba(199, 62, 74, 0.3);
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.icone {
+    display: inline-block;
+    padding-top: -5px;
+}
+
+

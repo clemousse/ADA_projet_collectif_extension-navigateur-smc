@@ -3,30 +3,32 @@ html {
 }
 
 body {
-    margin: 0;
-    padding:0;
+    margin: 0px;
+    padding: 0px;
 }
 
 header {
-    background: purple;
-    height: 100px;
+    background: rgb(199, 62, 74);
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 h1 {
     text-align: center;
-    color: white;
-    line-height: 100px;
     margin: auto;
+    color: white;
 }
 
 article {
-    padding: 10px;
-    margin: 10px;
-    background: aquamarine;
-    flex: 200px;
-    width: 30em;
     display: flex;
     flex-direction: column;
+    flex: 200px;
+    padding: 10px;
+    margin: 10px;
+    width: 30em;
+    background-color: rgb(255, 223, 226);
+    /*border: 1px solid rgb(199, 62, 74);*/
+    border-radius: 10px;
 }
 
 section {
@@ -35,21 +37,48 @@ section {
     flex-wrap: wrap;
 }
 
-nav {
-    display:flex;
+
+#formulaire {
+    display: flex;
     flex-direction: column;
-    text-align:center;
-    width:30em;
-    margin:auto;
+    justify-content: space-around;
+    text-align: center;
+    width: 15em;
+    margin: auto;
+    font-size: 1em;
 }
 
-label{
-    padding-top:1em;
-    padding-bottom:1em;
-}
-select{
-    border-color:brown;
-    background-color:aquamarine;
+label {
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
+#tags-select {
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    background-color: rgb(255, 223, 226);
+    font-size: 1em;
+    border: 1px solid rgb(199, 62, 74);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#go {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 1em;
+    color: #FFFFFF;
+    background-color: rgb(199, 62, 74);
+    border: 1px solid rgba(199, 62, 74, 0.3);
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+}
 
