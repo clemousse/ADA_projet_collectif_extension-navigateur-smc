@@ -118,6 +118,16 @@ function setDisplayUndefined(data) {
   return result.trim();
 }
 
+function reformate(text) {
+  let result = text.replace(" ", "-");
+  result = result.replace(/é|è|ê/g, "e");
+  result = result.replace(/à|â/g, "a");
+  result = result.replace(/ô/g, "o");
+  result = result.replace(/ù|û/g, "u");
+  result = result.replace(/î/g, "i");
+  return result;
+}
+
 function displayData(data) {
   //crée la balise article pour chaque data
   let newArt = document.createElement("article");
@@ -127,7 +137,7 @@ function displayData(data) {
   for (const el of tags) {
     let newTag = document.createElement("span");
     let classTag = document.createAttribute("class");
-    classTag.value = setDisplayUndefined([el]).toLowerCase();
+    classTag.value = reformate(setDisplayUndefined([el]).toLowerCase());
     newTag.setAttributeNode(classTag);
     let newTagContent = document.createTextNode(setDisplayUndefined([el]));
     newDivTag.appendChild(newTag);
@@ -219,7 +229,7 @@ function displayData(data) {
   classDescriptionSubtitle.value = "subtitle";
   classDescriptionDescription.value = "description";
   newDescriptionSubtitle.setAttributeNode(classDescriptionSubtitle);
-  newDescription.setAttributeNode(classDescriptionDescription);
+  newDivDescription.setAttributeNode(classDescriptionDescription);
   result = deleteTextInString(data.description);
   let newDescriptionContent = document.createTextNode(
     setDisplayUndefined([result])
