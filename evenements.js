@@ -118,10 +118,14 @@ function setDisplayUndefined(data) {
   return result.trim();
 }
 
-function collapse(text) {
-  if (text.includes(" ")) {
-    return text.replace(" ", "-");
-  }
+function reformate(text) {
+  let result = text.replace(" ", "-");
+  result = result.replace(/é|è|ê/g, "e");
+  result = result.replace(/à|â/g, "a");
+  result = result.replace(/ô/g, "o");
+  result = result.replace(/ù|û/g, "u");
+  result = result.replace(/î/g, "i");
+  return result;
 }
 
 function displayData(data) {
@@ -133,7 +137,7 @@ function displayData(data) {
   for (const el of tags) {
     let newTag = document.createElement("span");
     let classTag = document.createAttribute("class");
-    classTag.value = collapse(setDisplayUndefined([el]).toLowerCase());
+    classTag.value = reformate(setDisplayUndefined([el]).toLowerCase());
     newTag.setAttributeNode(classTag);
     let newTagContent = document.createTextNode(setDisplayUndefined([el]));
     newDivTag.appendChild(newTag);
