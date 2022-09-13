@@ -54,6 +54,10 @@ label {
 }
 
 /* Contenu */
+img {
+    width: 100%;
+}
+
 article {
     display: flex;
     flex-direction: column;
@@ -71,7 +75,6 @@ section {
     flex-wrap: wrap;
 }
 
-
 #formulaire {
     display: flex;
     flex-direction: column;
@@ -82,14 +85,303 @@ section {
     font-size: 1em;
 }
 
-img {
-    width: 100%;
+.description {
+    text-align: justify;
 }
 
 /*Les Tags*/
+.art-contemporain {
+    width: auto;
+    height: 20px;
+    background-color: yellow;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.atelier {
+    width: auto;
+    height: 20px;
+    background-color: azure;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.bd {
+    width: auto;
+    height: 20px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.balade {
+    width: auto;
+    height: 20px;
+    background-color: brown;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.brocante {
+    width: auto;
+    height: 20px;
+    background-color: blueviolet;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.cinema {
+    width: auto;
+    height: 20px;
+    color: #FFFFFF;
+    background-color: blue;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.cirque {
+    width: auto;
+    height: 20px;
+    background-color: burlywood;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.clubbing {
+    width: auto;
+    height: 20px;
+    background-color: cadetblue;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.concert {
+    width: auto;
+    height: 20px;
+    background-color: cyan;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.conference {
+    width: auto;
+    height: 20px;
+    background-color: firebrick;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.danse {
+    width: auto;
+    height: 20px;
+    background-color: goldenrod;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.enfants {
+    width: auto;
+    height: 20px;
+    background-color: chartreuse;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.expo {
+    width: auto;
+    height: 20px;
+    background-color: hotpink;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.gourmand {
+    width: auto;
+    height: 20px;
+    background-color: coral;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.histoire {
+    width: auto;
+    height: 20px;
+    background-color: ivory;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.humour {
+    width: auto;
+    height: 20px;
+    background-color: darkgoldenrod;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.innovation {
+    width: auto;
+    height: 20px;
+    background-color: chocolate;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.jeux-2024 {
+    width: auto;
+    height: 20px;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.lgbt {
+    width: auto;
+    height: 20px;
+    background-color: khaki;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.litterature {
+    width: auto;
+    height: 20px;
+    background-color: lawngreen;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.loisirs {
+    width: auto;
+    height: 20px;
+    background-color: magenta;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
 .musique {
     width: auto;
     height: 20px;
-    background-color: orange;
+    color: #FFFFFF;
+    background-color: navy;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
 }
+
+.nature {
+    width: auto;
+    height: 20px;
+    background-color: orange;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.peinture {
+    width: auto;
+    height: 20px;
+    background-color: crimson;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.photo {
+    width: auto;
+    height: 20px;
+    color: #FFFFFF;
+    background-color: purple;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.salon {
+    width: auto;
+    height: 20px;
+    background-color: forestgreen;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.sciences {
+    width: auto;
+    height: 20px;
+    background-color: fuchsia;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.solidarite {
+    width: auto;
+    height: 20px;
+    background-color: rosybrown;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.spectacle-musical {
+    width: auto;
+    height: 20px;
+    background-color: salmon;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.sport {
+    width: auto;
+    height: 20px;
+    color: #FFFFFF;
+    background-color: teal;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.street-art {
+    width: auto;
+    height: 20px;
+    background-color: gray;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.theatre {
+    width: auto;
+    height: 20px;
+    background-color: indianred;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+
+
 
