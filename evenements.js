@@ -152,21 +152,27 @@ function displayData(data) {
   let newDateContent = document.createTextNode(setDisplayUndefined([result]));
   //crée le prix et le lien d'accès
   let newDivPriceAccessLink = document.createElement("div");
+  let newAddressSubtitle = document.createElement("h4");
   let newPrice = document.createElement("span");
   let newAccessLink = document.createElement("a");
+  let classAddressSubtitle = document.createAttribute("class");
+  let classAccessLink = document.createAttribute("class");
   let classAccessLinkHref = document.createAttribute("href");
   let classAccessLinkTarget = document.createAttribute("target");
+  let classPrice = document.createAttribute("class");
+  classAddressSubtitle.value = "subtitle";
+  classAccessLink.value = "accessLink";
   classAccessLinkHref.value = data.access_link;
   classAccessLinkTarget.value = "_blank";
+  classPrice.value = "price";
+  newAddressSubtitle.setAttributeNode(classAddressSubtitle);
+  newAccessLink.setAttributeNode(classAccessLink);
   newAccessLink.setAttributeNode(classAccessLinkHref);
   newAccessLink.setAttributeNode(classAccessLinkTarget);
-
-  let classPrice = document.createAttribute("class");
-  classPrice.value = "price";
   newPrice.setAttributeNode(classPrice);
-  let classAccessLink = document.createAttribute("class");
-  classAccessLink.value = "accessLink";
-  newAccessLink.setAttributeNode(classAccessLink);
+  let newAddressSubtitleContent = document.createTextNode(
+    "Tarif - lien de l'événement : "
+  );
   let newPriceContent = document.createTextNode(
     " " + setDisplayUndefined([data.price_type, data.price_detail])
   );
@@ -175,14 +181,18 @@ function displayData(data) {
   );
   //crée le lieu et l'adresse
   let newDivPlace = document.createElement("div");
+  let newPlaceSubtitle = document.createElement("h4");
   let newAddress = document.createElement("span");
   let newPlace = document.createElement("span");
   let classPlace = document.createAttribute("class");
-  classPlace.value = "place";
-  newPlace.setAttributeNode(classPlace);
+  let classPlaceSubtitle = document.createAttribute("class");
   let classAddress = document.createAttribute("class");
+  classPlace.value = "place";
+  classPlaceSubtitle.value = "subtitle";
   classAddress.value = "address";
   newAddress.setAttributeNode(classAddress);
+  newPlaceSubtitle.setAttributeNode(classPlaceSubtitle);
+  newPlace.setAttributeNode(classPlace);
   let newPlaceContent = document.createTextNode(
     setDisplayUndefined([data.address_name])
   );
@@ -194,24 +204,40 @@ function displayData(data) {
         data.address_city,
       ])
   );
-
+  let newPlaceSubtitleContent = document.createTextNode(
+    "Lieu de l'événement : "
+  );
   //crée la description
-  let newDescription = document.createElement("p");
+  let newDivDescription = document.createElement("div");
+  let newDescriptionSubtitle = document.createElement("h4");
+  let newDescription = document.createElement("span");
+  let classDescriptionSubtitle = document.createAttribute("class");
+  classDescriptionSubtitle.value = "subtitle";
+  newDescriptionSubtitle.setAttributeNode(classDescriptionSubtitle);
   result = deleteTextInString(data.description);
   let newDescriptionContent = document.createTextNode(
     setDisplayUndefined([result])
   );
+  let newDescriptionSubtitleContent = document.createTextNode(
+    "Description de l'événement : "
+  );
   //crée le lien
+  let newDivUrl = document.createElement("div");
   let newUrl = document.createElement("a");
   let classUrl = document.createAttribute("href");
   let classTarget = document.createAttribute("target");
+  let newUrlSubtitle = document.createElement("h4");
+  let classUrlSubtitle = document.createAttribute("class");
   classUrl.value = data.url;
   classTarget.value = "_blank";
+  classUrlSubtitle.value = "subtitle";
   newUrl.setAttributeNode(classUrl);
   newUrl.setAttributeNode(classTarget);
+  newUrlSubtitle.setAttributeNode(classUrlSubtitle);
   let newUrlContent = document.createTextNode(setDisplayUndefined([data.url]));
-
-  //////
+  let newUrlSubtitleContent = document.createTextNode("Lien de l'événement : ");
+  /////////////////
+  /////////////////
   //ajoute les tags
   newArt.appendChild(newDivTag);
   //ajoute et remplit le titre
@@ -224,21 +250,31 @@ function displayData(data) {
   newDate.appendChild(newDateContent);
   //ajoute le prix et le lien d'accès
   newArt.appendChild(newDivPriceAccessLink);
+  newDivPriceAccessLink.appendChild(newAddressSubtitle);
+  newAddressSubtitle.appendChild(newAddressSubtitleContent);
   newDivPriceAccessLink.appendChild(newPrice);
   newPrice.appendChild(newPriceContent);
   newDivPriceAccessLink.appendChild(newAccessLink);
   newAccessLink.appendChild(newAccessLinkContent);
   //ajoute le lieu et l'adresse
   newArt.appendChild(newDivPlace);
+  newDivPlace.appendChild(newPlaceSubtitle);
+  newPlaceSubtitle.appendChild(newPlaceSubtitleContent);
   newDivPlace.appendChild(newPlace);
   newDivPlace.appendChild(newAddress);
   newPlace.appendChild(newPlaceContent);
   newAddress.appendChild(newAddressContent);
   //ajoute la description
-  newArt.appendChild(newDescription);
+  newArt.appendChild(newDivDescription);
+  newDivDescription.appendChild(newDescriptionSubtitle);
+  newDescriptionSubtitle.appendChild(newDescriptionSubtitleContent);
+  newDivDescription.appendChild(newDescription);
   newDescription.appendChild(newDescriptionContent);
   //ajoute le lien
-  newArt.appendChild(newUrl);
+  newArt.appendChild(newDivUrl);
+  newDivUrl.appendChild(newUrlSubtitle);
+  newUrlSubtitle.appendChild(newUrlSubtitleContent);
+  newDivUrl.appendChild(newUrl);
   newUrl.appendChild(newUrlContent);
   //ajoute à l'élément section du body dans le main
   let contenu = document.getElementById("contenu");

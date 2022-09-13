@@ -4,6 +4,7 @@ html {
 
 body {
     margin: 0;
+    padding:0;
 }
 
 header {
@@ -15,7 +16,7 @@ h1 {
     text-align: center;
     color: white;
     line-height: 100px;
-    margin: 0;
+    margin: auto;
 }
 
 article {
@@ -33,4 +34,22 @@ section {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+nav {
+    display:flex;
+    flex-direction: column;
+    text-align:center;
+    width:30em;
+    margin:auto;
+}
+
+label{
+    padding-top:1em;
+    padding-bottom:1em;
+}
+select{
+    border-color:brown;
+    background-color:aquamarine;
+}
+
 
