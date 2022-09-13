@@ -171,7 +171,7 @@ function displayData(data) {
   newAccessLink.setAttributeNode(classAccessLinkTarget);
   newPrice.setAttributeNode(classPrice);
   let newAddressSubtitleContent = document.createTextNode(
-    "Tarif - lien de l'événement : "
+    "Tarif - Billeterie : "
   );
   let newPriceContent = document.createTextNode(
     " " + setDisplayUndefined([data.price_type, data.price_detail])

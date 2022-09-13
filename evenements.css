@@ -5,8 +5,11 @@ html {
 body {
     margin: 0px;
     padding: 0px;
+    font-size: 15px;
 }
 
+
+/* Entête */
 header {
     background: rgb(199, 62, 74);
     padding-top: 20px;
@@ -19,35 +22,7 @@ h1 {
     color: white;
 }
 
-article {
-    display: flex;
-    flex-direction: column;
-    flex: 200px;
-    padding: 10px;
-    margin: 10px;
-    width: 30em;
-    background-color: rgb(255, 223, 226);
-    /*border: 1px solid rgb(199, 62, 74);*/
-    border-radius: 10px;
-}
-
-section {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-
-#formulaire {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    width: 15em;
-    margin: auto;
-    font-size: 1em;
-}
-
+/* Menu de sélection */
 label {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -78,7 +53,43 @@ label {
     cursor: pointer;
 }
 
+/* Contenu */
+article {
+    display: flex;
+    flex-direction: column;
+    flex: 200px;
+    padding: 10px;
+    margin: 10px;
+    width: 30em;
+    background-color: rgb(255, 223, 226);
+    border-radius: 10px;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+#formulaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    width: 15em;
+    margin: auto;
+    font-size: 1em;
+}
+
 img {
     width: 100%;
+}
+
+/*Les Tags*/
+.musique {
+    width: auto;
+    height: 20px;
+    background-color: orange;
 }
 
