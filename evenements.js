@@ -5,7 +5,7 @@
 // let dateEnd2 = "2022-09-30";
 
 // le mois en cours
-const date = new Date();
+const date = new Date("October 17, 2022 03:24:00");
 let month = date.getMonth() + 1;
 // l'année
 let year = date.getFullYear();
@@ -139,7 +139,7 @@ function displayData(data) {
     let classTag = document.createAttribute("class");
     classTag.value = reformate(setDisplayUndefined([el]).toLowerCase());
     newTag.setAttributeNode(classTag);
-    el = el.replace(/ /g, '\u00a0');
+    el = el.replace(/ /g, "\u00a0");
     let newTagContent = document.createTextNode(setDisplayUndefined([el]));
     newDivTag.appendChild(newTag);
     newTag.appendChild(newTagContent);
@@ -188,10 +188,11 @@ function displayData(data) {
     "Tarif - Billetterie : "
   );
   let newPriceContent = document.createTextNode(
-    " " + setDisplayUndefined([data.price_type, data.price_detail]) + " "
+    " " + setDisplayUndefined([data.price_type, data.price_detail]) + " - "
   );
-  let newAccessLinkContent = document.createTextNode (` lien vers la billetterie`
-  //(" " + setDisplayUndefined([data.access_link])
+  let newAccessLinkContent = document.createTextNode(
+    `lien vers la billetterie`
+    //(" " + setDisplayUndefined([data.access_link])
   );
   //crée le lieu et l'adresse
   let newDivPlace = document.createElement("div");
