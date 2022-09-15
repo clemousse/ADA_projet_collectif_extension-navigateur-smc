@@ -188,9 +188,9 @@ function displayData(data) {
     "Tarif - Billetterie : "
   );
   let newPriceContent = document.createTextNode(
-    " " + setDisplayUndefined([data.price_type, data.price_detail]) + " "
+    " " + setDisplayUndefined([data.price_type, data.price_detail]) + " - "
   );
-  let newAccessLinkContent = document.createTextNode (` lien vers la billetterie`
+  let newAccessLinkContent = document.createTextNode (`lien vers la billetterie`
   //(" " + setDisplayUndefined([data.access_link])
   );
   //crée le lieu et l'adresse
