@@ -9,7 +9,7 @@
 }
 
 p {
-    width: 200px;
+    width: 300px;
     border-radius: 6px;
     font-size: 15px;
     text-align: justify;
@@ -33,6 +33,12 @@ p {
 .icone {
     display: inline-block;
     padding-top: -5px;
+}
+
+.titleSite{
+    color:rgb(199, 62, 74);
+    font-style:italic;
+    font-weight: bold;
 }
 
 

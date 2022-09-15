@@ -204,7 +204,7 @@ function displayData(data) {
     "Tarif - Billetterie : "
   );
   let newPriceContent = document.createTextNode(
-    " " + setDisplayUndefined([data.price_type, data.price_detail]) + " - "
+    " " + setDisplayUndefined([data.price_type, data.price_detail]) + " "
   );
   let newAccessLinkContent = document.createTextNode("");
   if (data.access_link) {
