@@ -30,6 +30,21 @@ let days = {
   12: 31,
 };
 
+let monthString = {
+  1: "Janvier",
+  2: "Février",
+  3: "Mars",
+  4: "Avril",
+  5: "Mai",
+  6: "Juin",
+  7: "Juillet",
+  8: "Août",
+  9: "Septembre",
+  10: "Octobre",
+  11: "Novembre",
+  12: "Décembre",
+};
+
 // crée les dates finales
 let dateStart1 = `${year.toString()}-${
   (month - 1).toString().length === 1
@@ -306,6 +321,9 @@ fetch(url)
   .then((data) => {
     let nhits = data.nhits; // pour avoir le nombre d'événements/activités du mois
     let tags = []; //pour avoir l'ensemble des tags existants sur les événements/activités
+
+    //affiche le mois en cours dans le header
+    document.getElementById("titre").textContent += " : " + monthString[month];
 
     //////CREATION DU FORMULAIRE
     //label
