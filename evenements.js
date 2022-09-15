@@ -134,11 +134,12 @@ function displayData(data) {
   //crée les tags
   let tags = data.tags.split(";");
   let newDivTag = document.createElement("div");
-  for (const el of tags) {
+  for (let el of tags) {
     let newTag = document.createElement("span");
     let classTag = document.createAttribute("class");
     classTag.value = reformate(setDisplayUndefined([el]).toLowerCase());
     newTag.setAttributeNode(classTag);
+    el = el.replace(/ /g, '\u00a0');
     let newTagContent = document.createTextNode(setDisplayUndefined([el]));
     newDivTag.appendChild(newTag);
     newTag.appendChild(newTagContent);
@@ -184,13 +185,13 @@ function displayData(data) {
   newAccessLink.setAttributeNode(classAccessLinkTarget);
   newPrice.setAttributeNode(classPrice);
   let newAddressSubtitleContent = document.createTextNode(
-    "Tarif - Billeterie : "
+    "Tarif - Billetterie : "
   );
   let newPriceContent = document.createTextNode(
-    " " + setDisplayUndefined([data.price_type, data.price_detail])
+    " " + setDisplayUndefined([data.price_type, data.price_detail]) + " "
   );
-  let newAccessLinkContent = document.createTextNode(
-    " " + setDisplayUndefined([data.access_link])
+  let newAccessLinkContent = document.createTextNode (` lien vers la billetterie`
+  //(" " + setDisplayUndefined([data.access_link])
   );
   //crée le lieu et l'adresse
   let newDivPlace = document.createElement("div");
