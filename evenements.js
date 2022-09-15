@@ -5,7 +5,7 @@
 // let dateEnd2 = "2022-09-30";
 
 // le mois en cours
-const date = new Date("October 17, 2022 03:24:00");
+const date = new Date();
 let month = date.getMonth() + 1;
 // l'année
 let year = date.getFullYear();
@@ -29,6 +29,7 @@ let days = {
   11: 30,
   12: 31,
 };
+
 // crée les dates finales
 let dateStart1 = `${year.toString()}-${
   (month - 1).toString().length === 1
@@ -190,10 +191,11 @@ function displayData(data) {
   let newPriceContent = document.createTextNode(
     " " + setDisplayUndefined([data.price_type, data.price_detail]) + " - "
   );
-  let newAccessLinkContent = document.createTextNode(
-    `lien vers la billetterie`
-    //(" " + setDisplayUndefined([data.access_link])
-  );
+  let newAccessLinkContent = document.createTextNode("");
+  if (data.access_link) {
+    newAccessLinkContent = document.createTextNode(`lien vers la billetterie`);
+  }
+
   //crée le lieu et l'adresse
   let newDivPlace = document.createElement("div");
   let newPlaceSubtitle = document.createElement("h4");
