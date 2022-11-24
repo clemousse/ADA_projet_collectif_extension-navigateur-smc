@@ -4,7 +4,7 @@ Here is our project of extension for Chrome, realized with Sandrine Le Diraison 
 
 The extension allows you to see the events in Paris for the current month, selected by categories.
 
-We used theses tools :
+We used theses tools and technos :
 - API "Que Faire à Paris", 
 - the Chrome Developers API,
 - JavaSCript,
